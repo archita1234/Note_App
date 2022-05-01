@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <title>WEB NOTE APP</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+</head>
+
+<body >
+    
+    <div style="background-color:rgba(22, 179, 236, 0.655);color:rgba(20, 8, 8, 0.819); ;text-align:center;font-weight:bold;border: 1px outset rgba(68, 0, 255, 0.863); ;">
+      <h1>Note App</h1>    
+      </div><br>
+      <form action="/addNotes" method="POST">
+        <div class="form-group" style="border:4px outset rgba(119, 0, 255, 0.288);">
+          <textarea class="form-control" type="text" id="newtitle" type="text" name="newtitle"  placeholder="Add new Title" style="background-color: rgba(235, 230, 244, 0.895);" ></textarea>
+          <textarea class="form-control"  type="text" name="newNote" id="newNote" placeholder="Add new Note" style="background-color: blanchedalmond;" rows="4" cols="50"></textarea>
+          <button class="btn btn-success" type="submit">Add Note</button>
+          
+        </div><br><br>
+    </form>
+    
+    
+    <!-- we create a table for the inputted notes -->
+    
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">TITLE</th>
+          <th scope="col">NOTES</th>
+          <th scope="col">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% note.map((i, index) => { %>
+<tr>
+  <th scope="row"><%= index+1 %></th>
+       <td><%= i.title %></td>
+        <td><%= i.body %></td>
+        <td> 
+          <form  method="POST">
+            <button type="submit"formaction="/saveNote/<%=i.id%>" class="btn btn-success">Save</button>            
+        <button type="button" onClick='window.location.href ="<%= /deleteNote/ +i.id%>"' class="btn btn-danger">Delete</button>
+              <button type="button" onClick='window.location.href = "<%= /editNote/ +i.id%>"'
+                id="editbtn" class="btn btn-info">Edit</button>
+              </form>  
+               
+     
+           
+        </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    
+    
+  
+});
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+
+</html>
